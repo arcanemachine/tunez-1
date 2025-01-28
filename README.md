@@ -1,6 +1,6 @@
 # Tunez
 
-The starter app for the upcoming [Ash Framework](https://pragprog.com/titles/ldash/ash-framework/) book.
+The starter app for the new [Ash Framework](https://pragprog.com/titles/ldash/ash-framework/) book. Now in beta!
 
 ## Setup
 
