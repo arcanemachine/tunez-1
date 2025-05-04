@@ -21,4 +21,10 @@ defmodule Tunez.Music.Album do
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
+
+  relationships do
+    belongs_to :artist, Tunez.Music.Artist do
+      allow_nil? false
+    end
+  end
 end
