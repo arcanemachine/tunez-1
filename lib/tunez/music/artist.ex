@@ -18,6 +18,10 @@ defmodule Tunez.Music.Artist do
       allow_nil? false
     end
 
+    attribute :previous_names, {:array, :string} do
+      default []
+    end
+
     attribute :biography, :string
 
     create_timestamp :inserted_at
