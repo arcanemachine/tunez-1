@@ -14,19 +14,7 @@ defmodule Tunez.Music.Artist do
       require_atomic? false
       accept [:name, :biography]
 
-      change fn changeset, _context ->
-               new_name = Ash.Changeset.get_attribute(changeset, :name)
-               previous_name = Ash.Changeset.get_data(changeset, :name)
-               previous_names = Ash.Changeset.get_data(changeset, :previous_names)
-
-               names =
-                 [previous_name | previous_names]
-                 |> Enum.uniq()
-                 |> Enum.reject(fn name -> name == new_name end)
-
-               Ash.Changeset.change_attribute(changeset, :previous_names, names)
-             end,
-             where: [changing(:name)]
+      change Tunez.Music.Changes.UpdatePreviousNames, where: [changing(:name)]
     end
   end
 
