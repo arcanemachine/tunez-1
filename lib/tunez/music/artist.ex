@@ -10,6 +10,15 @@ defmodule Tunez.Music.Artist do
     defaults [:create, :read, :destroy]
     default_accept [:name, :biography]
 
+    read :search do
+      argument :query, :ci_string do
+        constraints allow_empty?: true
+        default ""
+      end
+
+      filter expr(contains(name, ^arg(:query)))
+    end
+
     update :update do
       require_atomic? false
       accept [:name, :biography]
