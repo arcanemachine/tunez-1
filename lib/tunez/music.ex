@@ -27,5 +27,17 @@ defmodule Tunez.Music do
       define :update_album, action: :update
       define :destroy_album, action: :destroy
     end
+
+    json_api do
+      routes do
+        base_route "/artists", Tunez.Music.Artist do
+          get :read
+          index :search
+          post :create
+          patch :update
+          delete :destroy
+        end
+      end
+    end
   end
 end
