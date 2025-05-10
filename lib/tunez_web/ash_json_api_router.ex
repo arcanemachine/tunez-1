@@ -1,5 +1,5 @@
 defmodule TunezWeb.AshJsonApiRouter do
   use AshJsonApi.Router,
-    domains: [],
+    domains: [Tunez.Music],
     open_api: "/open_api"
 end
