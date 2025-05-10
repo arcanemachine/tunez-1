@@ -48,13 +48,18 @@ defmodule Tunez.Music.Album do
 
     attribute :name, :string do
       allow_nil? false
+      public? true
     end
 
     attribute :year_released, :integer do
       allow_nil? false
+      public? true
     end
 
-    attribute :cover_image_url, :string
+    attribute :cover_image_url, :string do
+      public? true
+    end
+
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
