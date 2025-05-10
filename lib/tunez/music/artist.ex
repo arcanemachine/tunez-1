@@ -4,6 +4,10 @@ defmodule Tunez.Music.Artist do
   postgres do
     table "artists"
     repo Tunez.Repo
+
+    custom_indexes do
+      index "name gin_trgm_ops", name: "artists_name_gin_index", using: "GIN"
+    end
   end
 
   actions do
