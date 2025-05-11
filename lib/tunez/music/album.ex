@@ -93,6 +93,10 @@ defmodule Tunez.Music.Album do
     belongs_to :artist, Tunez.Music.Artist do
       allow_nil? false
     end
+
+    has_many :tracks, Tunez.Music.Track do
+      sort order: :asc
+    end
   end
 
   calculations do
