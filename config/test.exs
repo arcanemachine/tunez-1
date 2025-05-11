@@ -8,7 +8,7 @@ config :tunez, token_signing_secret: "GVFyTVkX4M8yypMfbF3wmHgi3VjolWbW"
 # Run `mix help test` for more information.
 config :tunez, Tunez.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "your_postgres_password",
   hostname: "localhost",
   database: "tunez_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
