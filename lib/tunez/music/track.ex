@@ -4,7 +4,11 @@ defmodule Tunez.Music.Track do
     domain: Tunez.Music,
     data_layer: AshPostgres.DataLayer,
     authorizers: [Ash.Policy.Authorizer],
-    extensions: [AshJsonApi.Resource]
+    extensions: [AshGraphql.Resource, AshJsonApi.Resource]
+
+  graphql do
+    type :track
+  end
 
   json_api do
     type "track"
