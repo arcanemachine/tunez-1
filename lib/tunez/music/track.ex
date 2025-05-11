@@ -3,7 +3,12 @@ defmodule Tunez.Music.Track do
     otp_app: :tunez,
     domain: Tunez.Music,
     data_layer: AshPostgres.DataLayer,
-    authorizers: [Ash.Policy.Authorizer]
+    authorizers: [Ash.Policy.Authorizer],
+    extensions: [AshJsonApi.Resource]
+
+  json_api do
+    type "track"
+  end
 
   postgres do
     table "tracks"
