@@ -64,5 +64,7 @@ defmodule Tunez.Music do
         end
       end
     end
+
+    resource Tunez.Music.Track
   end
 end
