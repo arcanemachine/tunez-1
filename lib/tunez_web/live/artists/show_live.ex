@@ -10,7 +10,7 @@ defmodule TunezWeb.Artists.ShowLive do
   def handle_params(%{"id" => artist_id}, _url, socket) do
     artist =
       Tunez.Music.get_artist_by_id!(artist_id,
-        load: [albums: [:duration, :tracks]],
+        load: [:followed_by_me, albums: [:duration, :tracks]],
         actor: socket.assigns.current_user
       )
 
@@ -28,6 +28,7 @@ defmodule TunezWeb.Artists.ShowLive do
       <.header>
         <.h1>
           {@artist.name}
+          <.follow_toggle on={@artist.followed_by_me} />
         </.h1>
         <:subtitle :if={@artist.previous_names != []}>
           formerly known as: {Enum.join(@artist.previous_names, ", ")}

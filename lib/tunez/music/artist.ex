@@ -117,11 +117,11 @@ defmodule Tunez.Music.Artist do
     end
   end
 
-  # calculations do
-  #   calculate :album_count, :integer, expr(count(albums))
-  #   calculate :latest_album_year_released, :integer, expr(first(albums, field: :year_released))
-  #   calculate :cover_image_url, :string, expr(first(albums, field: :cover_image_url))
-  # end
+  calculations do
+    calculate :followed_by_me,
+              :boolean,
+              expr(exists(follower_relationships, follower_id == ^actor(:id)))
+  end
 
   aggregates do
     count :album_count, :albums do
