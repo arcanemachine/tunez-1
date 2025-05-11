@@ -99,6 +99,10 @@ defmodule Tunez.Accounts.User do
       change {AshAuthentication.Strategy.Password.HashPasswordChange, strategy_name: :password}
     end
 
+    update :set_role do
+      accept [:role]
+    end
+
     read :sign_in_with_password do
       description "Attempt to sign in using a email and password."
       get? true
