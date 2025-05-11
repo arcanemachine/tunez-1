@@ -3,7 +3,8 @@ defmodule Tunez.Music.Artist do
     otp_app: :tunez,
     domain: Tunez.Music,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshJsonApi.Resource]
+    extensions: [AshGraphql.Resource, AshJsonApi.Resource],
+    authorizers: [Ash.Policy.Authorizer]
 
   graphql do
     type :artist
@@ -59,6 +60,12 @@ defmodule Tunez.Music.Artist do
       accept [:name, :biography]
 
       change Tunez.Music.Changes.UpdatePreviousNames, where: [changing(:name)]
+    end
+  end
+
+  policies do
+    policy action(:create) do
+      authorize_if actor_attribute_equals(:role, :admin)
     end
   end
 
