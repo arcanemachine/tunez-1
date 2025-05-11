@@ -36,7 +36,7 @@ defmodule Tunez.Music.Track do
   end
 
   preparations do
-    prepare build(load: [:number])
+    prepare build(load: [:number, :duration])
   end
 
   attributes do
