@@ -17,7 +17,7 @@ defmodule Tunez.Accounts.Notification do
   end
 
   actions do
-    defaults [:destroy]
+    defaults [:read, :destroy]
 
     create :create do
       accept [:user_id, :album_id]
@@ -34,8 +34,17 @@ defmodule Tunez.Accounts.Notification do
       forbid_if always()
     end
 
+    policy action(:read) do
+      authorize_if expr(album.can_manage_album?)
+    end
+
     policy action(:for_user) do
       authorize_if actor_present()
+    end
+
+    policy action(:destroy) do
+      authorize_if expr(album.can_manage_album?)
+      authorize_if relates_to_actor_via(:user)
     end
   end
 
