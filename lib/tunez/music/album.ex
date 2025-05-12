@@ -20,7 +20,7 @@ defmodule Tunez.Music.Album do
     repo Tunez.Repo
 
     references do
-      reference :artist, index?: true, on_delete: :delete
+      reference :artist, index?: true
     end
   end
 
