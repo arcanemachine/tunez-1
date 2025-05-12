@@ -67,6 +67,10 @@ defmodule Tunez.Music.Album do
     end
   end
 
+  changes do
+    change Tunez.Accounts.Changes.SendNewAlbumNotifications, on: [:create]
+  end
+
   validations do
     validate numericality(:year_released,
                greater_than: 1950,
@@ -79,6 +83,8 @@ defmodule Tunez.Music.Album do
       where: [changing(:cover_image_url)],
       message: "must start with https:// or /images/"
   end
+
+  def next_year, do: Date.utc_today().year + 1
 
   attributes do
     uuid_primary_key :id
@@ -100,8 +106,6 @@ defmodule Tunez.Music.Album do
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
-
-  def next_year, do: Date.utc_today().year + 1
 
   relationships do
     belongs_to :artist, Tunez.Music.Artist do

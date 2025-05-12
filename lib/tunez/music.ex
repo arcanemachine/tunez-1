@@ -62,6 +62,8 @@ defmodule Tunez.Music do
         end
       end
 
+      define :followers_for_artist, action: :for_artist, args: [:artist_id]
+
       define :unfollow_artist do
         action :destroy
         args [:artist]
