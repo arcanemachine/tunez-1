@@ -1,4 +1,5 @@
 import Config
+config :tunez, Oban, testing: :manual
 config :tunez, token_signing_secret: "GVFyTVkX4M8yypMfbF3wmHgi3VjolWbW"
 
 # Configure your database
