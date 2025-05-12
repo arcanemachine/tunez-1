@@ -16,6 +16,8 @@ defmodule Tunez.Music.Album do
         action :send_new_album_notifications
         queue :default
         scheduler_cron false
+        worker_module_name Tunez.Music.Album.AshOban.Worker.SendNewAlbumNotifications
+        scheduler_module_name Tunez.Music.Album.AshOban.Scheduler.SendNewAlbumNotifications
       end
     end
   end
