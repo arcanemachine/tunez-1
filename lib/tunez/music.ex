@@ -59,7 +59,7 @@ defmodule Tunez.Music do
       define :unfollow_artist do
         action :destroy
         args [:artist]
-        require_reference? false
+        get? true
 
         custom_input :artist, :struct do
           constraints instance_of: Tunez.Music.Artist
