@@ -55,6 +55,17 @@ defmodule Tunez.Music do
           transform to: :artist_id, using: & &1.id
         end
       end
+
+      define :unfollow_artist do
+        action :destroy
+        args [:artist]
+        require_reference? false
+
+        custom_input :artist, :struct do
+          constraints instance_of: Tunez.Music.Artist
+          transform to: :artist_id, using: & &1.id
+        end
+      end
     end
 
     json_api do
