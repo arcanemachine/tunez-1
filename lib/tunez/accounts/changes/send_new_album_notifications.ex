@@ -1,5 +1,11 @@
 defmodule Tunez.Accounts.Changes.SendNewAlbumNotifications do
   use Ash.Resource.Change
+
+  @impl true
+  def atomic(changeset, opts, context) do
+    {:ok, change(changeset, opts, context)}
+  end
+
   @impl true
   def change(changeset, _opts, _context) do
     Ash.Changeset.after_action(changeset, fn _changeset, album ->
