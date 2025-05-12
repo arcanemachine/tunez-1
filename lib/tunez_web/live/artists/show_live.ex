@@ -198,6 +198,17 @@ defmodule TunezWeb.Artists.ShowLive do
   end
 
   def handle_event("follow", _params, socket) do
+    socket =
+      case Tunez.Music.follow_artist(socket.assigns.artist,
+             actor: socket.assigns.current_user
+           ) do
+        {:ok, _} ->
+          update(socket, :artist, &%{&1 | followed_by_me: true})
+
+        {:error, _} ->
+          put_flash(socket, :error, "Could not follow artist")
+      end
+
     {:noreply, socket}
   end
 

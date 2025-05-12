@@ -45,6 +45,18 @@ defmodule Tunez.Music do
       define :destroy_album, action: :destroy
     end
 
+    resource Tunez.Music.ArtistFollower do
+      define :follow_artist do
+        action :create
+        args [:artist]
+
+        custom_input :artist, :struct do
+          constraints instance_of: Tunez.Music.Artist
+          transform to: :artist_id, using: & &1.id
+        end
+      end
+    end
+
     json_api do
       routes do
         base_route "/artists", Tunez.Music.Artist do
